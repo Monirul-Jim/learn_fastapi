@@ -43,10 +43,15 @@ def create_post(course:Course,db:Session=Depends(get_db)):
         "status":201
 
     }
+
+
 @app.get('/courses',response_model=List[Course])
 def get_all_courses(db:Session=Depends(get_db)):
     courses=db.query(models.Course).all()
     return courses
+
+
+
 @app.get("/courses/{course_id}")
 def get_course(course_id: int, db: Session = Depends(get_db)):
     # Look for the course with the matching ID
